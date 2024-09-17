@@ -13,7 +13,7 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 parameters = {
     "function":"TIME_SERIES_DAILY",
     "symbol":STOCK_NAME,
-    "apikey":"GFY9VILXRYRKKT0U"
+    "apikey":"YOUR API KEY"
 }
 response = requests.get(STOCK_ENDPOINT, params=parameters)
 response.raise_for_status()
@@ -38,7 +38,7 @@ diff_percentage = (diff / float(yesterday_closing)) * 100
 if abs(diff_percentage) > 0:
     news_parameter = {
         "q":COMPANY_NAME,
-        "apiKey":"74874ae72b8d407ea743f4e53525f3ee",
+        "apiKey":"YOUR API KEY",
     }
     response = requests.get(NEWS_ENDPOINT, params=news_parameter)
     response.raise_for_status()
@@ -46,15 +46,15 @@ if abs(diff_percentage) > 0:
     three_articles = news_data[:3]
 
     formatted_article = [f"{STOCK_NAME}: {up_down} \n {round(diff_percentage)}% \n Headline : {news_data[0]['title']}, \nBrief : {news_data[0]['description']}" for article in three_articles]
-    account_sid = "AC13375670ade94902c339179e651f1f52"
-    auth_token = "3e35b2e86661f7af00bd3bd98f9d3b4a"
+    account_sid = "YOUR ACC SID"
+    auth_token = "YOUR AUTH TOKEN"
     client = Client(account_sid, auth_token)
 
     for article in formatted_article:
         message = client.messages.create(
             body=article,
             from_='+13347215371',
-            to='+919790321615'
+            to='YOUR NUMBER'
         )
         print(message.sid)
 
